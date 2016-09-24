@@ -18,7 +18,7 @@ public class ChatJsonController {
     MessageRepository messages;
 
     @RequestMapping(path= "/message.json", method = RequestMethod.GET)
-    public Message messages(String message) throws Exception {
+    public ArrayList<Message> messages(String message) throws Exception {
         ArrayList<Message> messageList = new ArrayList<Message>();
         Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
         for (Message currentMessage : allMessages) {
