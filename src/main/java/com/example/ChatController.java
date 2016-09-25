@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ChatController {
-//    @Autowired
-//    MessageRepository messages;
+    @Autowired
+    MessageRepository messages;
 //
 //    @Autowired
 //    UserRepository users;

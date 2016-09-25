@@ -19,11 +19,10 @@ angular.module('TIYChatApp', [])
 //        };
 //                $scope.newMessage = {};
 //   });
-        $scope.sendMessage = function (inputMessage) {
+        $scope.sendMessage = function (messageEntered) {
             console.log("Sending message");
-        }
 
-        $scope.get("sendMesage.json?messageText=" + messageEntered)
+        $scope.get("//localhost:8080/sendMessage.json?messageText=" + messageEntered)
            .then(
             function successCallback(response) {
                 console.log(response.data);
@@ -33,6 +32,6 @@ angular.module('TIYChatApp', [])
                 function errorCallback(response){
                     console.log ("Unable to get data");
                 });
-        };
-
-   });
+                console.log("Done with the promise - waiting for the callback");
+        }
+  });

@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 @RestController
 public class ChatJsonController {
-    @Autowired
-    Message messages;
 
+    @Autowired
+    MessageRepository messages;
 
     WebChatClient myClient = new WebChatClient();
 
@@ -33,9 +33,11 @@ public class ChatJsonController {
             Message thisMessage = new Message(message);
             messages.save(thisMessage);
             Iterable<Message> allMessages = messages.findAll();
+
             for (Message currentMessage : allMessages) {
-            messageList.add(currentMessage);
+                messageList.add(currentMessage);
             }
+
         } catch (Exception ex){
             ex.printStackTrace();
         }
