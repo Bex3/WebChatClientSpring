@@ -19,9 +19,9 @@ angular.module('TIYChatApp', [])
         };
 
                 $scope.addMessage = function() {
-                    console.log("About to add the following game " + JSON.stringify($scope.newMessage));
+                  console.log("Trying to add some chocolate")
 
-                    $http.post("/addMessage.json", $scope.newMessage)
+                    $http.get("//localhost:8080/addMessage.json?message=" + message)
                         .then(
                             function successCallback(response) {
                                 console.log(response.data);

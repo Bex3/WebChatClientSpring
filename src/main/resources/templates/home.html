@@ -19,36 +19,14 @@
 </head>
 We will hopefully be chatting in a minute....
 
-
-<form action="/login" method="post">
-    Please login before beginning your message experience
-    <input type="text" placeholder="Username" name="userName" required/>
-    <input type="password" placeholder="Password" name="password" required/>
-    <button type="submit">Login</button>
-</form>
-
-
-
-<form action="/logout" method="post">
-    <button type="submit">Logout</button>
-</form>
-<br><br>
-
-<form action="/add-message" method="post">
-    <input type="text" placeholder="Text" name="messageText"/>
-</form>
-
 <body>
 
+<div>
+    <h4> Please input your message below </h4>
+    <span>Message: <input type="text" ng-model="message"/></span>
+    <span> <input type="button" ng-click="addMessage.json(message)" value="Let's add your message"/></span>
 
-
-
-
-
-
-
-
-
+</div>
 
 
 
