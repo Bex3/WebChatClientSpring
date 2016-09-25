@@ -14,39 +14,25 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ChatController {
-    @Autowired
-    MessageRepository messages;
-
-    @Autowired
-    UserRepository users;
+//    @Autowired
+//    MessageRepository messages;
+//
+//    @Autowired
+//    UserRepository users;
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String login(HttpSession session, String userName, String password) throws Exception {
-        User user = users.findFirstByName(userName);
-        if (user == null) {
-            user = new User(userName, password);
-            users.save(user);
-        } else if (!password.equals(user.getPassword())) {
-            throw new Exception("Incorrect password");
-        }
-        session.setAttribute("user", user);
+    public String login(HttpSession session, Model model) throws Exception{
+//    public String login(HttpSession session, String userName, String password) throws Exception {
+//        User user = users.findFirstByName(userName);
+//        if (user == null) {
+//            user = new User(userName, password);
+//            users.save(user);
+//        } else if (!password.equals(user.getPassword())) {
+//            throw new Exception("Incorrect password");
+//        }
+//        session.setAttribute("user", user);
         return "home";
-    }
-
-    @RequestMapping(path = "/logout", method = RequestMethod.POST)
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
-    }
-
-    @RequestMapping(path = "/addmessages", method = RequestMethod.POST)
-    public String addTheMessage(HttpSession session, String messageText) {
-        User user = (User) session.getAttribute("user");
-        Message thisMessage = new Message(user, messageText);
-        System.out.println("My runtime repo: " + thisMessage.toString());
-        messages.save(thisMessage); //uses the repo to save it
-        return "redirect:/";
     }
 
 }

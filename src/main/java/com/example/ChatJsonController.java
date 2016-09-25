@@ -14,18 +14,25 @@ import java.util.ArrayList;
 @RestController
 public class ChatJsonController {
 
-    @Autowired
-    MessageRepository messages;
+    WebChatClient myClient = new WebChatClient();
 
-    @RequestMapping(path= "/message.json", method = RequestMethod.GET)
+    @RequestMapping(path= "/getMessages.json", method = RequestMethod.GET)
+//    public String message(String message) throws Exception {
     public ArrayList<Message> messages(String message) throws Exception {
         ArrayList<Message> messageList = new ArrayList<Message>();
-        Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
-        for (Message currentMessage : allMessages) {
+//        Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
+
+        try{
+            String serverResponse = myClient.sendUserMessage(message);
+            System.out.println(serverResponse);
+            Message thisMessage = new Message(message);
+            messages.save(thisMessage);
+            Iterable<Message> allMessages = messages.findAll();
+            for (Message currentMessage : allMessages) {
             messageList.add(currentMessage);
-        }
+        } 
 
         System.out.println("Returning Message");
-        return messageList;
+        return allMessages;
     }
 }

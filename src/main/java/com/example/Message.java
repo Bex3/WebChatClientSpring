@@ -15,8 +15,8 @@ public class Message {
     @GeneratedValue
     int id;
 
-    @ManyToOne
-    User user;
+//    @ManyToOne
+//    User user;
 
     @Column(nullable = false)
     String messageText;
@@ -29,13 +29,13 @@ public class Message {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public String getMessageText() {
         return messageText;
@@ -45,8 +45,8 @@ public class Message {
         this.messageText = messageText;
     }
 
-    public Message (User user, String messageText) {
-        this.user = user;
+    public Message (String messageText) {
+//        this.user = user;
         this.messageText = messageText;
     }
 
