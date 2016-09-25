@@ -12,9 +12,7 @@
 {{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
 {{=<% %>=}}
 -->
-
 <head>
-    <meta charset="UTF-8">
     <title>Welcome to the chat... </title>
 </head>
 We will hopefully be chatting in a minute....
@@ -24,7 +22,7 @@ We will hopefully be chatting in a minute....
 <div>
     <h4> Please input your message below </h4>
     <span>Message: <input type="text" ng-model="message"/></span>
-    <span> <input type="button" ng-click="addMessage.json(message)" value="Let's add your message"/></span>
+    <span> <input type="button" ng-click="getMessages(message)" value="Let's add your message"/></span>
 
 </div>
 
