@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<html lang="en-US" ng-app="TIYChatApp">
+<html lang="en">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="../static/js/tiy-ng-controller.js"> </script>
+<script src="js/tiy-ng-controller.js"></script>
+
 <!--
 {{! changing the mustache delimiter so it doesn't conflict with  }}
 {{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
 {{=<% %>=}}
 -->
 
-
 <head>
     <meta charset="UTF-8">
     <title>Welcome to the chat... </title>
 </head>
-<body>
 We will hopefully be chatting in a minute....
 
 
+<form action="/login" method="post">
+    Please login before beginning your message experience
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+
+
+
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+
+<form action="/add-message" method="post">
+    <input type="text" placeholder="Text" name="messageText"/>
+</form>
+
+<body>
 
 
 
 
-<button type="submit">Get Messages</button>
+
+
+
+
 
 
 
