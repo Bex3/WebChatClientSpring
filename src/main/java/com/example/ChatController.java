@@ -27,8 +27,8 @@ public class ChatController {
         if (user == null) {
             user = new User(userName, password);
             users.save(user);
-        } else if (!password.equals(user.getPassword())) {
-            throw new Exception("Incorrect password");
+//        } else if (!password.equals(user.getPassword())) {
+//            throw new Exception("Incorrect password");
         }
         session.setAttribute("user", user);
         return "home";

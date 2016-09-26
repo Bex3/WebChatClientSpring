@@ -13,11 +13,27 @@
 {{=<% %>=}}
 -->
 <head>
-    <title>Welcome to home... </title>
+    <meta charset="UTF-8">
+    <title>Welcome to the chat... </title>
 </head>
-We will hopefully be chatting in a minute....
-
 <body>
+
+
+
+<div>
+    <h4> Please input your message below </h4>
+    <span>Message: <input type="text" ng-model="messageText"/></span>
+    <span> <input type="button" ng-click="sendMessage(messageEntered)" value="Let's send your message"/></span>
+</div>
+
+<br><br>
+
+<h4>Previous Messages</h4>
+<div ng-repeat="message in messages">
+    {{message}}
+</div>
+
+
 
 
 

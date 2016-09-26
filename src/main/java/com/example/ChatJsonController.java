@@ -1,4 +1,5 @@
 package com.example;
+//html  client
 
 import com.fasterxml.jackson.databind.JsonSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,14 @@ public class ChatJsonController {
 
     @RequestMapping(path= "/getMessages.json", method = RequestMethod.GET)
 //    public String message(String message) throws Exception {
-    public ArrayList<Message> messages(String message) throws Exception {
+    public ArrayList<Message> messages(User user, String message) throws Exception {
         ArrayList<Message> messageList = new ArrayList<Message>();
 //        Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
 
         try{
             String serverResponse = myClient.SendMessage(message);
             System.out.println(serverResponse);
-            Message thisMessage = new Message(message);
+            Message thisMessage = new Message(user, message);
             messages.save(thisMessage);
             Iterable<Message> allMessages = messages.findAll();
 
@@ -46,11 +47,11 @@ public class ChatJsonController {
     }
 
     @RequestMapping(path= "/sendMessage.json", method = RequestMethod.GET)
-    public ArrayList<String> sendUserMessage(String messageText) {
+    public ArrayList<String> sendUserMessage(User user, String messageText) {
         ArrayList<String> totalMessages = new ArrayList<>();
         String serverResponse = null;
         try{
-            Message newMessage = new Message (messageText);
+            Message newMessage = new Message (user, messageText);
         } catch (Exception ex){
             ex.printStackTrace();
         }

@@ -30,13 +30,13 @@ public class User {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
     @Column(nullable = false, unique = true)
     String name;
@@ -49,6 +49,6 @@ public class User {
 
     public User(String name, String password) {
         this.name = name;
-        this.password = password;
+//        this.password = password;
     }
 }
