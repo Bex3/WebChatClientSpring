@@ -1,28 +1,10 @@
 angular.module('TIYChatApp', [])
    .controller('SampleController', function($scope, $http) {
 
-//        $scope.getMessages = function() {
-//            console.log("About to go get me some data!");
-//            $scope.name = "JavaScript Master Guru";
-//
-//            $http.get("//localhost:8080/message.json?message=" + message) //asynch call
-//                .then( //provides the callback
-//                    function successCallback(response) { //inside of the promise object then holds the 2 functions
-//                        console.log(response.data); //data is the json object as a javascript object
-//                        console.log("Adding data to scope");
-//                        $scope.messages = response.data;
-//                    },
-//                    function errorCallback(response) {
-//                        console.log("Unable to get data");
-//                    });
-//                    console.log("Done with the promise - waiting for the callback");
-//        };
-//                $scope.newMessage = {};
-//   });
-        $scope.sendMessage = function (messageEntered) {
+        $scope.sendMessage = function (messageText) {
             console.log("Sending message");
 
-        $scope.get("//localhost:8080/sendMessage.json?messageText=" + messageEntered)
+        $scope.get("//localhost:8080/sendMessage.json?messageText=" + messageText)
            .then(
             function successCallback(response) {
                 console.log(response.data);
@@ -33,5 +15,5 @@ angular.module('TIYChatApp', [])
                     console.log ("Unable to get data");
                 });
                 console.log("Done with the promise - waiting for the callback");
-        }
+        };
   });
