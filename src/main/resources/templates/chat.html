@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--
+{{! changing the mustache delimiter so it doesn't conflict with  }}
+{{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
+{{=<% %>=}}
+-->
+
 <html lang="en-US" ng-app="TIYChatApp">
 <html lang="en">
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="../static/js/tiy-ng-controller.js"> </script>
 <script src="js/tiy-ng-controller.js"></script>
 
-<!--
-{{! changing the mustache delimiter so it doesn't conflict with  }}
-{{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
-{{=<% %>=}}
--->
 <head>
     <meta charset="UTF-8">
     <title>Welcome to the chat... </title>
 </head>
-<body>
-
-
+<body ng-controller="SampleController">
 
 <div>
     <h4> Please input your message below </h4>
-    <span>Message: <input type="text" ng-model="messageText"/></span>
-    <span> <input type="button" ng-click="sendMessage(messageEntered)" value="Let's send your message"/></span>
+    <form action="/inputText" method="post">
+        <input type="text" placeholder="Enter your message" name="message" ng-model="newMessage.text"/>
+        <button type="submit" ng-click="sendMessage()">Send Message</button>
+    </form>
+
 </div>
 
 <br><br>
 
+
+
 <h4>Previous Messages</h4>
 <div ng-repeat="message in messages">
     {{message}}
+
 </div>
 
 

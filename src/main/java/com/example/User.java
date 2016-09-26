@@ -41,13 +41,13 @@ public class User {
     @Column(nullable = false, unique = true)
     String name;
 
-    @Column(nullable = false)
-    String password;
+//    @Column(nullable = false)
+//    String password;
 
     public User() {
     }
 
-    public User(String name, String password) {
+    public User(String name) {
         this.name = name;
 //        this.password = password;
     }

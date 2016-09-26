@@ -1,10 +1,28 @@
 angular.module('TIYChatApp', [])
    .controller('SampleController', function($scope, $http) {
 
+                $scope.getHistory = function() {
+                    console.log("About to get the history...")
+
+                $scope.get("///localhost:8080/history.json")
+                    console.log("About to display the history");
+                    .then(
+                        function successCallback(response){
+                            console.log("inside callback for history");
+                            console.log(response.data);
+                            console.log("Adding data to scope");
+
+                        },
+                        function errorCallback(response){
+                            console.log("Unable to get data in history");
+                        });
+                        console.log("Done with the promise - waiting for the callback");
+                    };
+
         $scope.sendMessage = function (messageText) {
             console.log("Sending message");
 
-        $scope.post("//localhost:8080/sendMessage.json", $scope.newMessage, $scope.newUser)
+        $scope.post("/sendMessage.json", $scope.newMessage, $scope.newUser)
            console.log("Posting message about to start");
 
            .then(
@@ -20,20 +38,6 @@ angular.module('TIYChatApp', [])
                 console.log("Done with the promise - waiting for the callback");
         };
 
-        $scope.get("/history.json"){
-            console.log("About to display the history");
-            .then(
-                function successCallback(response){
-                    console.log("inside callback for history");
-                    console.log(response.data);
-                    console.log("Adding data to scope");
-
-                },
-                function errorCallback(response){
-                    console.log("Unable to get data in history");
-                });
-                console.log("Done with the promise - waiting for the callback");
-            };
        $scope.addUser = function() {
           console.log("About to add the following user " + JSON.stringify($scope.newUser));
 
