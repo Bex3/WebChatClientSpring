@@ -21,5 +21,16 @@ We will hopefully be chatting in a minute....
 
 
 
+
+<%^user%>
+<form action="/login" method="post">
+    <input type="text" placeholder="Enter your name" name="name"/>
+    <button type="submit">Login</button>
+</form>
+<%/user%>
+
+<%#user%>
+<button type="submit"><a href="/chat">Let's chat!</a></button>
+<%/user%>
 </body>
 </html>

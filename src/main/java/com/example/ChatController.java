@@ -39,12 +39,10 @@ public class ChatController {
     }
 
     ArrayList<Message> messageList = new ArrayList<>();
-        if (users != null) {
-        messageList = messages.findByText(text);
-    } else {
+        if (users != null){
         User savedUser = (User)session.getAttribute("user");
         if (savedUser != null) {
-            messageList = messages.findFirstByName(savedUser);
+            messageList = messages.findByUser(savedUser);
         } else {
             Iterable<Message> allMessages = messages.findAll();
             for (Message message : allMessages) {
@@ -59,7 +57,6 @@ public class ChatController {
     public String login(HttpSession session, String userName) throws Exception {
         User user = users.findFirstByName(userName);
         if (user == null) {
-            session.invalidate();
             user = new User(userName);
             users.save(user);
 //        } else if (!password.equals(user.getPassword())) {
@@ -68,5 +65,23 @@ public class ChatController {
         session.setAttribute("user", user);
         return "redirect:/";
     }
+
+    @RequestMapping(path = "/chat", method = RequestMethod.GET)
+    public String chat() {
+        return "chat";
+    }
+
+    @RequestMapping(path = "/inputMessage", method = RequestMethod.POST)
+    public String inputText(HttpSession session, String message) {
+        WebChatClient myChatClient = new WebChatClient();
+        myChatClient.SendMessage(message);
+        System.out.println("Message sent from /inputtext");
+        session.getAttribute(message);
+        System.out.println("message added to session");
+        return "redirect:/";
+    }
+
+
+
 
 }
