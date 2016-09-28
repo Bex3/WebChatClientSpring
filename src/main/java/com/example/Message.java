@@ -21,6 +21,9 @@ public class Message {
     @Column(nullable = false)
     String messageText;
 
+    public Message() {
+    }
+
     public int getId() {
         return id;
     }

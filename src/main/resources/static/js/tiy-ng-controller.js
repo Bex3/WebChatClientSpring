@@ -4,23 +4,24 @@ angular.module('TIYChatApp', [])
         $scope.messages;
         $scope.user;
 
-                $scope.getHistory = function() {
-                    console.log("About to get the history...")
+        $scope.getHistory = function() {
+            console.log("About to get the history...");
 
-                $scope.get("//localhost:8080/history.json")
+                $http.get("//localhost:8080/getMessages.json")
                     console.log("About to display the history")
                     .then(
-                        function successCallback(response){
+                        function successCallback(response) {
                             console.log("inside callback for history");
                             console.log(response.data);
                             console.log("Adding data to scope");
                             $scope.messages = response.data;
 
                         },
-                        function errorCallback(response){
-                            console.log("Unable to get data in history");
+                            function errorCallback(response) {
+                                console.log("Unable to get data in history");
                         });
                         console.log("Done with the promise - waiting for the callback");
+//                        return $scope.messages;
                     };
 
         $scope.sendMessage = function (messageText) {
@@ -52,6 +53,7 @@ angular.module('TIYChatApp', [])
                      console.log(response.data);
                      console.log("Adding data to scope");
                      $scope.messages = response.data;
+
                   },
                   function errorCallback(response) {
                       console.log("Unable to add user data");

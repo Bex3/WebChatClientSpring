@@ -30,17 +30,16 @@ public class ChatJsonController {
         ArrayList<Message> messageList = new ArrayList<Message>();
 //        Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
 
-            String serverResponse = myClient.SendMessage(message);
-            System.out.println(serverResponse);
-            Message thisMessage = new Message(user, message);
-            messages.save(thisMessage);
+//            String serverResponse = myClient.SendMessage(message);
+//            System.out.println(serverResponse);
+//            Message thisMessage = new Message(user, message);
+//            messages.save(thisMessage);
             Iterable<Message> allMessages = messages.findAll();
 
             for (Message currentMessage : allMessages) {
                 messageList.add(currentMessage);
             }
 
-        System.out.println("Returning Message");
         return messageList;
     }
 

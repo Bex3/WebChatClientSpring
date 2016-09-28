@@ -29,11 +29,10 @@
 <br><br>
 
 
-
+<button type="submit" ng-click="getHistory()">Getting Messages</button>
 <h4>Previous Messages</h4>
 <div ng-repeat="message in messages">
-    {{message}}
-
+    {{message.messageText}}
 </div>
 
 
