@@ -63,7 +63,7 @@ public class ChatController {
 //            throw new Exception("Incorrect password");
         }
         session.setAttribute("user", user);
-        return "redirect:/";
+        return "redirect:/chat";
     }
 
     @RequestMapping(path = "/chat", method = RequestMethod.GET)
@@ -71,17 +71,13 @@ public class ChatController {
         return "chat";
     }
 
-    @RequestMapping(path = "/inputMessage", method = RequestMethod.POST)
+    @RequestMapping(path = "/sendMessage", method = RequestMethod.POST)
     public String inputText(HttpSession session, String message) {
         WebChatClient myChatClient = new WebChatClient();
         myChatClient.SendMessage(message);
-        System.out.println("Message sent from /inputtext");
         session.getAttribute(message);
         System.out.println("message added to session");
-        return "redirect:/";
+        return "redirect:/chat";
     }
-
-
-
 
 }

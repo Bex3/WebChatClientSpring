@@ -1,14 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!--
-{{! changing the mustache delimiter so it doesn't conflict with  }}
-{{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
-{{=<% %>=}}
--->
 
 <html lang="en-US" ng-app="TIYChatApp">
-<html lang="en">
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="../static/js/tiy-ng-controller.js"> </script>
 <script src="js/tiy-ng-controller.js"></script>
@@ -18,10 +10,16 @@
     <title>Welcome to the chat... </title>
 </head>
 <body ng-controller="SampleController">
-<%#user%>
+<!--
+{{! changing the mustache delimiter so it doesn't conflict with  }}
+{{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
+{{=<% %>=}}
+-->
+
+{{user.name}}
 <div>
     <h4> Please input your message below </h4>
-    <form action="/inputText" method="post">
+    <form action="/sendMessage" method="post">
         <input type="text" placeholder="Enter your message" name="message" ng-model="newMessage.text"/>
         <button type="submit" ng-click="sendMessage()">Send Message</button>
     </form>
@@ -41,6 +39,6 @@
 
 
 
-<%/user%>
+
 </body>
 </html>

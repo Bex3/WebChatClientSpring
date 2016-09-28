@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <html lang="en-US" ng-app="TIYChatApp">
-<html lang="en">
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="../static/js/tiy-ng-controller.js"> </script>
 <script src="js/tiy-ng-controller.js"></script>
@@ -22,13 +20,11 @@ We will hopefully be chatting in a minute....
 
 <%^user%>
 <form action="/login" method="post">
-    <input type="text" placeholder="Enter your name" name="name"/>
+    <input type="text" placeholder="Enter your name" name="userName" required/>
     <button type="submit">Login</button>
 </form>
 <%/user%>
 
-<%#user%>
-<button type="submit"><a href="/chat">Let's chat!</a></button>
-<%/user%>
+
 </body>
 </html>

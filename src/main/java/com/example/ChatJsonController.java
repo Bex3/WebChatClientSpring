@@ -3,10 +3,12 @@ package com.example;
 
 import com.fasterxml.jackson.databind.JsonSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,7 +30,6 @@ public class ChatJsonController {
         ArrayList<Message> messageList = new ArrayList<Message>();
 //        Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
 
-        try{
             String serverResponse = myClient.SendMessage(message);
             System.out.println(serverResponse);
             Message thisMessage = new Message(user, message);
@@ -39,22 +40,17 @@ public class ChatJsonController {
                 messageList.add(currentMessage);
             }
 
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
         System.out.println("Returning Message");
         return messageList;
     }
 
-    @RequestMapping(path= "/sendMessage.json", method = RequestMethod.GET)
-    public ArrayList<String> sendUserMessage(User user, String messageText) {
+    @RequestMapping(path= "/inputMessage.json", method = RequestMethod.GET)
+    public ArrayList<String> sendUserMessage(HttpSession session, @RequestBody Message message) {
         ArrayList<String> totalMessages = new ArrayList<>();
         String serverResponse = null;
-        try{
-            Message newMessage = new Message (user, messageText);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
+        User user = (User)session.getAttribute("user");
+        Message newMessage = new Message (user, message.messageText);
+
         return totalMessages;
     }
 

@@ -1,16 +1,20 @@
 angular.module('TIYChatApp', [])
    .controller('SampleController', function($scope, $http) {
 
+        $scope.messages;
+        $scope.user;
+
                 $scope.getHistory = function() {
                     console.log("About to get the history...")
 
-                $scope.get("///localhost:8080/history.json")
-                    console.log("About to display the history");
+                $scope.get("//localhost:8080/history.json")
+                    console.log("About to display the history")
                     .then(
                         function successCallback(response){
                             console.log("inside callback for history");
                             console.log(response.data);
                             console.log("Adding data to scope");
+                            $scope.messages = response.data;
 
                         },
                         function errorCallback(response){
@@ -22,12 +26,12 @@ angular.module('TIYChatApp', [])
         $scope.sendMessage = function (messageText) {
             console.log("Sending message");
 
-        $scope.post("/sendMessage.json", $scope.newMessage, $scope.newUser)
-           console.log("Posting message about to start");
+        $scope.post("/sendMessage.json", $scope.newMessage, $scope.user)
+           console.log("Posting message about to start")
 
            .then(
             function successCallback(response) {
-                console.log("inside callback for posting messages")
+                console.log("inside callback for posting messages");
                 console.log(response.data);
                 console.log("Adding data to scope");
                 $scope.messages = response.data;
@@ -39,12 +43,12 @@ angular.module('TIYChatApp', [])
         };
 
        $scope.addUser = function() {
-          console.log("About to add the following user " + JSON.stringify($scope.newUser));
+          console.log("About to add the following user " + JSON.stringify($scope.user));
 
           $http.post("/addUser.json", $scope.newUser)
               .then(
                   function successCallback(response) {
-                     console.log("about to add a new user")
+                     console.log("about to add a new user");
                      console.log(response.data);
                      console.log("Adding data to scope");
                      $scope.messages = response.data;
@@ -55,6 +59,6 @@ angular.module('TIYChatApp', [])
       };
 
        $scope.newMessage = {};
-       $scope.newUser = {};
+
 
   });
