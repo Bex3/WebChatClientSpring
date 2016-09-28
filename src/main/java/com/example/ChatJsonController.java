@@ -44,12 +44,14 @@ public class ChatJsonController {
         return messageList;
     }
 
-    @RequestMapping(path= "/inputMessage.json", method = RequestMethod.GET)
+    @RequestMapping(path= "/inputMessage.json", method = RequestMethod.POST)
     public ArrayList<String> sendUserMessage(HttpSession session, @RequestBody Message message) {
         ArrayList<String> totalMessages = new ArrayList<>();
-        String serverResponse = null;
+//        String serverResponse = null; //take this out maybe??
         User user = (User)session.getAttribute("user");
-        Message newMessage = new Message (user, message.messageText);
+//        Message newMessage = new Message (user, message.messageText);
+        message.user = user;
+        messages.save(message);
 
         return totalMessages;
     }

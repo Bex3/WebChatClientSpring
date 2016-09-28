@@ -16,11 +16,11 @@
 {{=<% %>=}}
 -->
 
-{{user.name}}
+
 <div>
     <h4> Please input your message below </h4>
     <form action="/sendMessage" method="post">
-        <input type="text" placeholder="Enter your message" name="message" ng-model="newMessage.text"/>
+        <input type="text" placeholder="Enter your message" name="message" ng-model="messageText"/>
         <button type="submit" ng-click="sendMessage()">Send Message</button>
     </form>
 

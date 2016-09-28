@@ -3,6 +3,7 @@ package com.example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -74,8 +75,14 @@ public class ChatController {
     @RequestMapping(path = "/sendMessage", method = RequestMethod.POST)
     public String inputText(HttpSession session, String message) {
         WebChatClient myChatClient = new WebChatClient();
+        User user = (User)session.getAttribute("user");
         myChatClient.SendMessage(message);
-        session.getAttribute(message);
+//        session.getAttribute(message);
+        Message newMessage = new Message(user, message);
+
+//        message.user = user;
+        messages.save(newMessage);
+
         System.out.println("message added to session");
         return "redirect:/chat";
     }
