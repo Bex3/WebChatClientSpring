@@ -14,6 +14,11 @@ angular.module('TIYChatApp', [])
                             console.log("inside callback for history");
                             console.log(response.data);
                             console.log("Adding data to scope");
+//                            $scope.messages = {};
+//
+//
+//                            alert("About to refresh the messages on the scope");
+
                             $scope.messages = response.data;
 
                         },
@@ -35,6 +40,8 @@ angular.module('TIYChatApp', [])
                 console.log("inside callback for posting messages");
                 console.log(response.data);
                 console.log("Adding data to scope");
+
+
                 $scope.messages = response.data;
                 },
                 function errorCallback(response){

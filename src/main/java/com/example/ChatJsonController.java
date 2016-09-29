@@ -26,20 +26,23 @@ public class ChatJsonController {
 
     @RequestMapping(path= "/getMessages.json", method = RequestMethod.GET)
 //    public String message(String message) throws Exception {
-    public ArrayList<Message> messages(User user, String message) throws Exception {
+    public ArrayList<Message> messages() {
         ArrayList<Message> messageList = new ArrayList<Message>();
-//        Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
+//        User user = (User)session.getAttribute("user");
+        Iterable<Message> allMessages = messages.findAll(); // hibernate (object relational mapping) uses the repo
 
 //            String serverResponse = myClient.SendMessage(message);
 //            System.out.println(serverResponse);
 //            Message thisMessage = new Message(user, message);
 //            messages.save(thisMessage);
-            Iterable<Message> allMessages = messages.findAll();
+//            Iterable<Message> allMessages = messages.findAll();
+//
+//            message.user  = user;
+//            messages.save(message);
 
             for (Message currentMessage : allMessages) {
                 messageList.add(currentMessage);
             }
-
         return messageList;
     }
 
