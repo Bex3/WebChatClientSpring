@@ -1,33 +1,45 @@
 angular.module('TIYChatApp', [])
    .controller('SampleController', function($scope, $http) {
 
-        $scope.messages;
-        $scope.user;
+        $scope.messageList = {};
+
+
+//        $scope.getHistory = function() {
+//            console.log("About to get the history...");
+//
+//                $http.get("//localhost:8080/getMessages.json")
+//                    .then(
+//                        function successCallback(response) {
+//                            console.log("inside callback for history");
+//                            console.log(response.data);
+//                            console.log("Adding data to scope");
+//                            $scope.messageList = response.data;
+//
+//                        },
+//                            function errorCallback(response) {
+//                                console.log("Unable to get data in history");
+//                        });
+//                        console.log("Done with the promise - waiting for the callback");
+//
+//                    };
+
 
         $scope.getHistory = function() {
-            console.log("About to get the history...");
+            console.log("About to get message history");
+            $http.get("//localhost:8080/getMessages.json")
+            .then(
+                function successCallBack(response) {
+                    console.log(response.data);
+                    console.log("retrieving messages");
+                    $scope.messageList = response.data;
+                    console.log($scope.messageList);
+                },
+                function errorCallBack(response) {
+                    console.log("Unable to retrieve messages");
+                });
+             console.log("Done with the callback");
+        };
 
-                $http.get("//localhost:8080/getMessages.json")
-                    console.log("About to display the history")
-                    .then(
-                        function successCallback(response) {
-                            console.log("inside callback for history");
-                            console.log(response.data);
-                            console.log("Adding data to scope");
-//                            $scope.messages = {};
-//
-//
-//                            alert("About to refresh the messages on the scope");
-
-                            $scope.messages = response.data;
-
-                        },
-                            function errorCallback(response) {
-                                console.log("Unable to get data in history");
-                        });
-                        console.log("Done with the promise - waiting for the callback");
-//                        return $scope.messages;
-                    };
 
         $scope.sendMessage = function (messageText) {
             console.log("Sending message");
